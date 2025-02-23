@@ -34,8 +34,3 @@ release:
 	@shasum -a 256 bin/jetkvm_app | cut -d ' ' -f 1 > bin/jetkvm_app.sha256
 	rclone copyto bin/jetkvm_app r2://jetkvm-update/app/$(VERSION)/jetkvm_app
 	rclone copyto bin/jetkvm_app.sha256 r2://jetkvm-update/app/$(VERSION)/jetkvm_app.sha256
-
-
-build_release_prod: frontend_prod hash_resource
-	@echo "Building release..."
-	GOOS=linux GOARCH=arm GOARM=7 go build -ldflags="-s -w -X kvm.builtAppVersion=$(VERSION)" -o bin/jetkvm_app cmd/main.go

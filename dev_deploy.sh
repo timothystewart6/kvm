@@ -60,7 +60,8 @@ fi
 
 # Build the appropriate version on the host
 if [ "$INSTALL_RELEASE" = true ]; then
-    make build_release_prod
+    make frontend_prod
+    make build_release
 else
     make frontend
     make build_dev
