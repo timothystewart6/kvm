@@ -55,7 +55,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/techno-dev') }}
           tags: |
             ${{ steps.meta.outputs.tags }}
-            ${{ github.ref == 'refs/heads/techno-dev' && 'your-docker-repo/image-name:latest' || '' }}
+            ${{ github.ref == 'refs/heads/techno-dev' && 'ghcr.io/timothystewart6/kvm:latest' }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
