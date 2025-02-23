@@ -46,20 +46,20 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-- name: Build and Push
-  uses: docker/build-push-action@v6
-  with:
-    context: ./ui
-    file: ./ui/Dockerfile
-    platforms: linux/amd64,linux/arm64
-    push: ${{ github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/techno-dev') }}
-    tags: |
-      ${{ steps.meta.outputs.tags }}
-      ${{ github.ref == 'refs/heads/techno-dev' && 'your-docker-repo/image-name:latest' || '' }}
-    labels: ${{ steps.meta.outputs.labels }}
-    cache-from: type=gha
-    cache-to: type=gha,mode=max
-    build-args: |
-      NODE_ENV=production
-      VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
-      REVISION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.revision'] }}
+      - name: Build and Push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./ui
+          file: ./ui/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/techno-dev') }}
+          tags: |
+            ${{ steps.meta.outputs.tags }}
+            ${{ github.ref == 'refs/heads/techno-dev' && 'your-docker-repo/image-name:latest' || '' }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            NODE_ENV=production
+            VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
+            REVISION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.revision'] }}
