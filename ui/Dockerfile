@@ -14,6 +14,6 @@ RUN npm run build:prod
 
 FROM nginx:alpine
 COPY --from=dev /app/dist /var/www
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 ENTRYPOINT ["nginx","-g","daemon off;"]
