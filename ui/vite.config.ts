@@ -5,6 +5,8 @@ import tsconfigPaths from "vite-tsconfig-paths";
 declare const process: {
   env: {
     JETKVM_PROXY_URL: string;
+    VITE_CLOUD_API: string;
+    VITE_CLOUD_APP: string;
   };
 };
 
@@ -30,5 +32,9 @@ export default defineConfig(({ mode, command }) => {
         : undefined,
     },
     base: onDevice && command === "build" ? "/static" : "/",
+    define: {
+      'import.meta.env.VITE_CLOUD_API': JSON.stringify(process.env.VITE_CLOUD_API || 'https://kvm-api.technotim.live'),
+      'import.meta.env.VITE_CLOUD_APP': JSON.stringify(process.env.VITE_CLOUD_APP || 'https://kvm-app.technotim.live'),
+    },
   };
 });
