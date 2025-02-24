@@ -42,12 +42,6 @@ jobs:
         VERSION_DEV: ci-build
       run: |
         go build -ldflags="-s -w -X kvm.builtAppVersion=${{ env.VERSION_DEV }}" -o bin/jetkvm_app cmd/main.go
-
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: jetkvm_app
-        path: bin/jetkvm_app
     
     - name: Use Node.js
       uses: actions/setup-node@v4
