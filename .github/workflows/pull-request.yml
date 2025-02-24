@@ -32,8 +32,9 @@ jobs:
 
     - name: Install Dependencies and Build
       run: |
+        cd ui
         npm ci
-        npx prisma generate
+        # npm run lint # need to clean lint before enabling this
         npm run build:prod
       env:
         CI: true
