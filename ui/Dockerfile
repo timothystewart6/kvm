@@ -1,5 +1,5 @@
 # Base Stage
-FROM node:21.1.0-alpine AS base
+FROM node:22.14.0-alpine AS base
 WORKDIR /app
 COPY package.json package-lock.json ./
 
