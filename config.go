@@ -28,6 +28,7 @@ type Config struct {
 	DisplayMaxBrightness int               `json:"display_max_brightness"`
 	DisplayDimAfterSec   int               `json:"display_dim_after_sec"`
 	DisplayOffAfterSec   int               `json:"display_off_after_sec"`
+	KeyboardLayout       string            `json:"keyboard_layout"`
 }
 
 const configPath = "/userdata/kvm_config.json"
@@ -39,6 +40,7 @@ var defaultConfig = &Config{
 	DisplayMaxBrightness: 64,
 	DisplayDimAfterSec:   120,  // 2 minutes
 	DisplayOffAfterSec:   1800, // 30 minutes
+	KeyboardLayout:       "us",
 }
 
 var (
